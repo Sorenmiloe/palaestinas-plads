@@ -1,6 +1,20 @@
-<a href="{{ .RelPermalink }}" class="no-underline pa3 bg-grey-1 br1 mb2 db raise w-100">
-	<h2 class="f3 b lh-title mb1 primary">{{ .Title }}</h2>
-	<p class="mid-gray lh-title mb2">{{ .Date.Format "Mon, Jan 2, 2006" }}</p>
-	<p class="mb0">{{ .Description }}</p>
-	<p class="link b dib black mb0">Read more →</p>
-</a>
+<div class="mb4 db w-100 inline-flex-ns">
+    <a href="{{ .RelPermalink }}" class="no-underline {{with .Params.image }}db{{ end }} w-100">
+        <div class="{{ with .Params.image }}post-image{{else}}bg-green{{ end }} overflow-hidden h5 w-100 pa0" style="{{ if .Params.image }}background-image: url({{ .Params.image }}); {{ end }} background-repeat: no-repeat; background-position: 50% 50%; background-size: cover; ">{{ with .Params.image }}{{ else }} <p style="font-family: PalestineTitle; font-size: 50px; word-break: break-all; line-height: 42px; max-height: 300px; padding-left: 10px; padding-right: 10px; padding-top: 10px; margin-bottom: 0px;">Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine Free Palestine</p> {{ end }}</div>
+        <div class="inline-flex mt3">
+            <p class="f6 grey-3 lh-title mr3">{{ .Date.Format "Jan 2, 2006" }} </p>
+            <p class="f6 lh-title">{{ .Title }}</p>
+        </div>
+        <div>
+
+        </div>
+        <p class="mb0 f6" style="hyphens: auto;">
+            {{ if gt (len .Description) 100 }}
+                {{ .Description | truncate 100 "..." }}
+            {{ else }}
+                {{ .Description }}
+            {{ end }}
+            Læs mere.
+        </p>
+    </a>
+</div>
